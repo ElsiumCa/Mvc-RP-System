@@ -1,0 +1,82 @@
+@model UserDtoForCreation;
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg border-0 rounded-4 p-4" style="width: 100%; max-width: 400px; background: #f8f9fa;">
+        <h2 class="text-center text-primary fw-bold">Kayıt Ol</h2>
+        <p class="text-center text-muted">Yeni bir hesap oluştur.</p>
+        <hr>
+
+        <!-- ViewBag Mesajı -->
+        @if (ViewBag.messege != null)
+        {
+            <div class="alert alert-info text-center">
+                @ViewBag.messege
+            </div>
+        }
+
+        <form method="post">
+            <!-- Kullanıcı Adı -->
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label fw-semibold">Kullanıcı Adı</label>
+                <input asp-for="UserName" class="form-control rounded-3" placeholder="Kullanıcı Adınızı Girin">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <!-- First Name -->
+            <div class="mb-3">
+                <label asp-for="FirstName" class="form-label fw-semibold">Ad</label>
+                <input asp-for="FirstName" class="form-control rounded-3" placeholder="Adınızı Girin">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <!-- Last Name -->
+            <div class="mb-3">
+                <label asp-for="LastName" class="form-label fw-semibold">Soyad</label>
+                <input asp-for="LastName" class="form-control rounded-3" placeholder="Soyadınızı Girin">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <!-- E-Posta -->
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-semibold">E-Posta</label>
+                <input asp-for="Email" class="form-control rounded-3" type="email"
+                    placeholder="E-Posta Adresinizi Girin">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- Şifre -->
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label fw-semibold">Şifre</label>
+                <input asp-for="Password" class="form-control rounded-3" type="password" placeholder="Şifrenizi Girin">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <!-- Roller -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Rol Seçiniz</label>
+                <div class="d-flex flex-wrap gap-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="Roles" value="Family" id="roleAile">
+                        <label class="form-check-label" for="roleAile">Aile</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="Roles" value="Friend" id="roleArkadaslar">
+                        <label class="form-check-label" for="roleArkadaslar">Arkadaşlar</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="Roles" value="School" id="roleOkul">
+                        <label class="form-check-label" for="roleOkul">Okul</label>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" asp-for="JoinDate" value="@Convert.ToString(DateTime.UtcNow)">
+            <!-- Kayıt Butonu -->
+            <button type="submit" class="btn btn-primary w-100 rounded-3">Kayıt Ol</button>
+        </form>
+
+        <!-- Giriş Yap Linki -->
+        <div class="text-center mt-3">
+            <p class="text-muted">Zaten hesabınız var mı? <a asp-controller="Account" asp-action="Login"
+                    class="text-primary fw-semibold">Giriş Yap</a></p>
+        </div>
+    </div>
+</div>

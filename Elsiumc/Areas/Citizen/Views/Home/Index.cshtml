@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="container">
+    <h1 class="title">Minecraft Vatandaşlık Paneli</h1>
+    
+    <div class="nav-menu">
+
+        <a asp-action="Constitution" asp-controller="Home" class="nav-item">📜 Anayasa</a>
+        <a asp-action="Laws" asp-controller="Home" class="nav-item">⚖️ Kanunlar</a>
+        <a asp-action="Cases" asp-controller="Home" class="nav-item">⚔️ Davalar</a>
+        <a asp-action="Voting" asp-controller="Home" class="nav-item">🗳️ Oy Verme</a>
+    </div>
+</div>
+
+<style>
+    body {
+        text-align: center;
+        font-family: 'Press Start 2P', cursive;
+        color: #fff;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        display: inline-block;
+    }
+
+    .title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-item {
+        background: #4CAF50;
+        padding: 10px;
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+        display: block;
+        width: 200px;
+        margin: 0 auto;
+        transition: 0.3s;
+    }
+
+    .nav-item:hover {
+        background: #388E3C;
+        transform: scale(1.1);
+    }
+</style>

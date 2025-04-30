@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Admin Panel - Home";
+}
+
+<h1 class="text-center my-4">Admin Panel</h1>
+
+<div class="container">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="h5 mb-0">Manage Users</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a class="btn btn-link" asp-area="Admin" asp-controller="Users" asp-action="Index">List Users</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="btn btn-link" asp-area="Admin" asp-controller="Users" asp-action="Create">Add New User</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="btn btn-link" asp-area="Admin" asp-controller="Users" asp-action="Edit">Update User</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="btn btn-link text-danger" asp-area="Admin" asp-controller="Users" asp-action="Delete">Delete User</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+F:\code\ElsiumCa\Services\bin\Release\net8.0\Services.deps.json
+F:\code\ElsiumCa\Services\bin\Release\net8.0\Services.dll
+F:\code\ElsiumCa\Services\bin\Release\net8.0\Services.pdb
+F:\code\ElsiumCa\Services\bin\Release\net8.0\Entities.dll
+F:\code\ElsiumCa\Services\bin\Release\net8.0\Entities.pdb
+F:\code\ElsiumCa\Services\obj\Release\net8.0\Services.csproj.AssemblyReference.cache
+F:\code\ElsiumCa\Services\obj\Release\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+F:\code\ElsiumCa\Services\obj\Release\net8.0\Services.AssemblyInfoInputs.cache
+F:\code\ElsiumCa\Services\obj\Release\net8.0\Services.AssemblyInfo.cs
+F:\code\ElsiumCa\Services\obj\Release\net8.0\Services.csproj.CoreCompileInputs.cache
+F:\code\ElsiumCa\Services\obj\Release\net8.0\Services.csproj.Up2Date
+F:\code\ElsiumCa\Services\obj\Release\net8.0\Services.dll
+F:\code\ElsiumCa\Services\obj\Release\net8.0\refint\Services.dll
+F:\code\ElsiumCa\Services\obj\Release\net8.0\Services.pdb
+F:\code\ElsiumCa\Services\obj\Release\net8.0\ref\Services.dll

@@ -1,0 +1,8 @@
+F:\code\ElsiumCa\Elsiumc\publish\2\appsettings.Development.json
+F:\code\ElsiumCa\Elsiumc\publish\2\appsettings.json
+F:\code\ElsiumCa\Elsiumc\publish\2\Elsiumc.pdb
+F:\code\ElsiumCa\Elsiumc\publish\2\aspnetcorev2_inprocess.dll
+F:\code\ElsiumCa\Elsiumc\publish\2\Repositories.pdb
+F:\code\ElsiumCa\Elsiumc\publish\2\Entities.pdb
+F:\code\ElsiumCa\Elsiumc\publish\2\Services.pdb
+F:\code\ElsiumCa\Elsiumc\publish\2\Elsiumc.exe

@@ -1,0 +1,82 @@
+@using System.Security.Claims
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Devlet RP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('/images/background.png') repeat;
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar {
+            background: #4CAF50;
+            padding: 15px;
+            border-bottom: 5px solid #2E7D32;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .container {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .button {
+            background: #8B4513;
+            padding: 10px 20px;
+            color: white;
+            border: 3px solid #654321;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: #A0522D;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+
+        <a asp-action="index" asp-controller="Home">Anasayfa</a>
+        <a asp-action="Constitution" asp-controller="Home">📜 Anayasa</a>
+        <a asp-action="Laws" asp-controller="Home">⚖️ Kanunlar</a>
+        <a asp-action="Cases" asp-controller="Home">⚔️ Davalar</a>
+        <a asp-action="Voting" asp-controller="Home">🗳️ Oy Verme</a>
+        @if (User.Identity.IsAuthenticated)
+        {
+        <a asp-action="Profile" asp-controller="Profile"> 👤 Profilim</a>
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            <a asp-action="Profile" asp-controller="Profile" asp-route-id="@userId">@User.Identity.Name</a>
+            <a asp-area="" asp-controller="Account" asp-action="Logout" class="button">Çıkış Yap</a>
+        }
+        else
+        {
+            <a href="/Hesap/Giris" class="button">Giriş Yap</a>
+            <a href="/Hesap/Kayit" class="button">Kayıt Ol</a>
+        }
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+
+</html>

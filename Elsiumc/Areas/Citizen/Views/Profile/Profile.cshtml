@@ -1,0 +1,131 @@
+@model UserDtoForProfileList
+
+@{
+    ViewData["Title"] = "Profilim";
+}
+
+<div class="profile-wrapper">
+    <!-- SOLDA KÜÇÜK KART -->
+    <div class="profile-card">
+        <h3>@Model.UserName</h3>
+        <p><strong>Rol:</strong> @Model.MainRole</p>
+        <p><strong>Meslek:</strong> @Model.Occupation</p>
+        <p><strong>Ceza Puanı:</strong> @(Model.PenaltyPoints ?? 0)</p>
+    </div>
+
+    <!-- SAĞDA DETAYLAR -->
+    <div class="profile-details">
+        <h2>👤 Profil Bilgileri</h2>
+
+        <div class="section">
+            <h4>Alt Roller</h4>
+            <ul>
+                @foreach (var role in Model.SubRoles ?? new List<string>())
+                {
+                    <li>@role</li>
+                }
+            </ul>
+        </div>
+
+        <div class="section">
+            <h4>Suç Kayıtları</h4>
+            <ul>
+                @if (Model.CriminalRecords != null && Model.CriminalRecords.Any())
+                {
+                    @foreach (var record in Model.CriminalRecords)
+                    {
+                        <li>@record</li>
+                    }
+                }
+                else
+                {
+                    <li>Temiz</li>
+                }
+            </ul>
+        </div>
+
+        <div class="section">
+            <h4>Araziler</h4>
+            <ul>
+                @if (Model.Lands != null && Model.Lands.Any())
+                {
+                    @foreach (var land in Model.Lands)
+                    {
+                        <li>@land</li>
+                    }
+                }
+                else
+                {
+                    <li>Yok</li>
+                }
+            </ul>
+        </div>
+
+        <div class="section actions">
+            @if(User.IsInRole("President")){
+            <a asp-controller="Profile" asp-action="ManageConstitution">🗳️ Oy Ver</a>
+
+            }
+            <a asp-controller="Profile" asp-action="Voting">🗳️ Oy Ver</a>
+            <a asp-controller="Land" asp-action="Buy">🏞️ Arazi Satın Al</a>
+            <a asp-controller="Court" asp-action="ViewCrimes">⚖️ Davalarım</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .profile-wrapper {
+        display: flex;
+        gap: 30px;
+        padding: 40px;
+        font-family: 'Press Start 2P', cursive;
+        color: white;
+    }
+
+    .profile-card {
+        background: #222;
+        border: 3px solid #4CAF50;
+        padding: 20px;
+        width: 250px;
+        border-radius: 12px;
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .profile-details {
+        flex-grow: 1;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 30px;
+        border-radius: 12px;
+        border: 2px dashed #2ecc71;
+    }
+
+    .section {
+        margin-bottom: 25px;
+    }
+
+    .section h4 {
+        color: #2ecc71;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style: square;
+        padding-left: 20px;
+    }
+
+    .actions a {
+        display: inline-block;
+        margin: 10px 10px 0 0;
+        padding: 10px 15px;
+        background: #2ecc71;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 11px;
+    }
+
+    .actions a:hover {
+        background: #27ae60;
+    }
+</style>

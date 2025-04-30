@@ -1,0 +1,32 @@
+@model LoginModel
+<div class="container min-vh-90 d-flex flex-column justify-content-center align-items-center">
+    <div class="card p-4 shadow-lg border-0 rounded-4" style="width: 100%; max-width: 380px; background: #f8f9fa;">
+        <h2 class="text-center mb-4 text-primary fw-bold">Giriş Yap</h2>
+        <form method="post">
+            <!-- Kullanıcı Adı -->
+            <div class="mb-3">
+                <label for="Username" class="form-label fw-semibold">Kullanıcı Adı</label>
+                <input asp-for="Username" class="form-control rounded-3" type="text" placeholder="Kullanıcı Adınızı Girin">
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            
+            <!-- Şifre -->
+            <div class="mb-3">
+                <label for="Password" class="form-label fw-semibold">Şifre</label>
+                <input asp-for="Password" class="form-control rounded-3" type="password" placeholder="Şifrenizi Girin">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <!-- Giriş Yap ve Kayıt Ol Butonları -->
+            <div class="mb-3 d-flex gap-2">
+                <button type="submit" class="btn btn-primary w-50 rounded-3">Giriş Yap</button>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary w-50 rounded-3">Kayıt Ol</a>
+            </div>
+        </form>
+
+        <!-- Şifremi Unuttum -->
+        <div class="text-center mt-3">
+            <a href="#" class="text-decoration-none text-muted">Şifrenizi mi unuttunuz?</a>
+        </div>
+    </div>
+</div>
+
