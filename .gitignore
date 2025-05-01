@@ -1,2 +1,24 @@
+# Publish folder
 /Publish
-/appsettings.json
+
+# User-specific files
+*.user
+*.vs
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+bin/
+obj/
+
+# Configuration files
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Dependency folders
+node_modules/
+wwwroot/lib/
