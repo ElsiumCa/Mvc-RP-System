@@ -11,11 +11,12 @@ namespace Repositories
         public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options)
         {
         }
-    
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+        public DbSet<Constitution> Constitutions { get; set; }
     }
 }

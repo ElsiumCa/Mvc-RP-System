@@ -63,12 +63,12 @@
 
         <div class="section actions">
             @if(User.IsInRole("President")){
-            <a asp-controller="Profile" asp-action="ManageConstitution">🗳️ Oy Ver</a>
+            <a asp-controller="President" asp-action="index">Başkan Görevleri</a>
 
             }
             <a asp-controller="Profile" asp-action="Voting">🗳️ Oy Ver</a>
-            <a asp-controller="Land" asp-action="Buy">🏞️ Arazi Satın Al</a>
-            <a asp-controller="Court" asp-action="ViewCrimes">⚖️ Davalarım</a>
+            <a asp-controller="Profile" asp-action="Buy">🏞️ Arazi Satın Al</a>
+            <a asp-controller="Profile" asp-action="ViewCrimes">⚖️ Davalarım</a>
         </div>
     </div>
 </div>

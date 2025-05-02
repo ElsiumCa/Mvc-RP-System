@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Elsiumc.Areas.Citizen.Controllers
 {
+    [Authorize(Roles = "Citizen")]
     [Area("Citizen")]
+
     public class HomeController : Controller
     {
         // GET: /Citizen/Home/
@@ -23,14 +26,5 @@ namespace Elsiumc.Areas.Citizen.Controllers
         {
             return View();
         }
-        public IActionResult Voting()
-        {
-            return View();
-        }
-        public IActionResult Profile()
-        {
-            return View();
-        }
-
     }
 }

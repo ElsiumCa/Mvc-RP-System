@@ -61,9 +61,9 @@
         <a asp-action="Voting" asp-controller="Home">🗳️ Oy Verme</a>
         @if (User.Identity.IsAuthenticated)
         {
-        <a asp-action="Profile" asp-controller="Profile"> 👤 Profilim</a>
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+             <a asp-action="Profile" asp-controller="Profile" asp-route-id="@userId"> 👤 Profilim</a>
 
             <a asp-action="Profile" asp-controller="Profile" asp-route-id="@userId">@User.Identity.Name</a>
             <a asp-area="" asp-controller="Account" asp-action="Logout" class="button">Çıkış Yap</a>
