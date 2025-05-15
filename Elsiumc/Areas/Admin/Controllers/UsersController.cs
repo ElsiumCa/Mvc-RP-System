@@ -5,12 +5,13 @@ using Entities.Dtos;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using Elsiumc.Models;
 
 namespace Elsiumc.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("Admin/[controller]/[action]")]
-    [Authorize(Roles ="Admin")]
+    [Route("Admin/Users/[action]")]
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -25,7 +26,7 @@ namespace Elsiumc.Areas.Admin.Controllers
         }
 
         // List all users
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
             var users = _AuthManager.GetAllCitizens();
             var userWithRolesList = new List<UserDtoForList>();
@@ -35,7 +36,7 @@ namespace Elsiumc.Areas.Admin.Controllers
                 var roles = await _UserManager.GetRolesAsync(user);
                 userWithRolesList.Add(new UserDtoForList
                 {
-                    ID = user.Id, // Assuming `Id` is a string, convert it to int
+                    ID = user.Id,
                     UserName = user.UserName,
                     Email = user.Email,
                     FirstName = user.FirstName,
@@ -45,7 +46,25 @@ namespace Elsiumc.Areas.Admin.Controllers
                 });
             }
 
-            return View(userWithRolesList);
+            var totalRecords = userWithRolesList.Count;
+            var pagedItems = userWithRolesList
+                .OrderBy(u => u.UserName)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var model = new PagingViewModel<UserDtoForList>
+            {
+                Items = pagedItems,
+                PageNo = page,
+                PageSize = pageSize,
+                TotalRecords = totalRecords
+            };
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView("_UserListPartial", model);
+
+            return View(model);
         }
 
         // Update user (GET)
@@ -70,7 +89,7 @@ namespace Elsiumc.Areas.Admin.Controllers
                 PhoneNumber = user.PhoneNumber,
                 Roles = new HashSet<string>(roles),
                 AllRoles = new List<string>(AllRoles.Select(role => role.Name))
-                
+
             };
 
             return View(userDto);

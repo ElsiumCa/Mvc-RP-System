@@ -6,6 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Devlet RP</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"
+        integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
@@ -63,7 +67,7 @@
         {
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-             <a asp-action="Profile" asp-controller="Profile" asp-route-id="@userId"> 👤 Profilim</a>
+            <a asp-action="Profile" asp-controller="Profile" asp-route-id="@userId"> 👤 Profilim</a>
 
             <a asp-action="Profile" asp-controller="Profile" asp-route-id="@userId">@User.Identity.Name</a>
             <a asp-area="" asp-controller="Account" asp-action="Logout" class="button">Çıkış Yap</a>

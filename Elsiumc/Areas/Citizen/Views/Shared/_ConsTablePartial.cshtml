@@ -1,0 +1,174 @@
+@model PagingViewModel<Entities.RpItems.Constitution>
+
+<div class="minecraft-table-container" style="margin-bottom: 1.5rem;">
+    <table class="minecraft-table">
+        <thead>
+            <tr>
+                <th style="width:5%">#</th>
+                <th style="width:30%">Başlık</th>
+                <th style="width:15%">Oluşturan</th>
+                <th style="width:15%">Oluşturulma Tarihi</th>
+                <th style="width:10%">Evet Oyları</th>
+                <th style="width:10%">Hayır Oyları</th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (Model.Items.Any())
+        {
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Title</td>
+                    <td>@item.CreatedByUserId</td>
+                    <td>@item.CreatedAt.ToString("dd.MM.yyyy")</td>
+                    <td>@item.YesVotes</td>
+                    <td>@item.NoVotes</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">Kayıt bulunamadı.</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <span class="badge bg-light text-dark border shadow-sm minecraft-badge">
+        Toplam Kayıt: @Model.TotalRecords
+    </span>
+    <div class="minecraft-paging-container">
+        <paging
+            page-no="@Model.PageNo"
+            page-size="@Model.PageSize"
+            total-records="@Model.TotalRecords"
+            url-template="/Citizen/President/ManageConstitution?page={0}&pageSize={1}"
+            ajax="true"
+            ajax-update="#consTableDiv"
+            ajax-url="/Citizen/President/ManageConstitution"
+            show-page-size-nav="false"
+            show-gap="true"
+            show-first-last="false"
+            show-prev-next="true"
+            show-total-pages="false"
+            show-total-records="false"
+            max-displayed-pages="10"
+            render-mode="Bootstrap5">
+        </paging>
+    </div>
+</div>
+
+<style>
+    .minecraft-table-container {
+        background: rgba(0,0,0,0.7);
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 4px 16px #222;
+    }
+    .minecraft-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-family: 'Press Start 2P', cursive, monospace;
+        background: #222;
+        color: #fff;
+        box-shadow: 0 2px 8px #111;
+    }
+    .minecraft-table th, .minecraft-table td {
+        border: 3px solid #654321;
+        padding: 8px 6px;
+        background: #3e2723;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+    }
+    .minecraft-table th {
+        background: #795548;
+        color: #ffe082;
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+    .minecraft-table tr:nth-child(even) td {
+        background: #4e342e;
+    }
+    .minecraft-table tr:hover td {
+        background: #6d4c41;
+        color: #fff176;
+    }
+    .minecraft-badge {
+        font-family: 'Press Start 2P', cursive, monospace;
+        background: #8B4513 !important;
+        color: #ffe082 !important;
+        border: 3px solid #654321 !important;
+        font-size: 11px;
+        padding: 8px 12px;
+        box-shadow: 2px 2px 0 #222;
+    }
+    .minecraft-paging-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+    }
+    /* Minecraft temalı pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 0;
+        font-family: 'Press Start 2P', cursive, monospace;
+        background: none;
+        box-shadow: none;
+        list-style: none;           /* Noktaları kaldırır */
+        padding-left: 0;            /* Soldan boşluğu kaldırır */
+    }
+
+    .pagination .page-item {
+        margin: 0 2px;
+    }
+
+    .pagination .page-link {
+        border-radius: 4px !important;
+        min-width: 36px;
+        text-align: center;
+        background: #8B4513;
+        color: #ffe082;
+        border: 2px solid #654321;
+        font-size: 12px;
+        box-shadow: 2px 2px 0 #222;
+        transition: background 0.2s, color 0.2s;
+        font-family: 'Press Start 2P', cursive, monospace;
+        padding: 6px 10px;
+        outline: none;
+    }
+
+    .pagination .page-link:hover,
+    .pagination .page-item.active .page-link {
+        background: #A0522D;
+        color: #fff176;
+        border-color: #795548;
+    }
+
+    .pagination .page-item.active .page-link {
+        background: #4CAF50;
+        color: #fff;
+        border-color: #2E7D32;
+        cursor: default;
+    }
+
+    .pagination .page-link:focus {
+        box-shadow: 0 0 0 0.2rem #ffe08280;
+    }
+
+    .pagination .disabled .page-link {
+        background: #3e2723;
+        color: #888;
+        border-color: #654321;
+        cursor: not-allowed;
+    }
+</style>

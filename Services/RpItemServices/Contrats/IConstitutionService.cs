@@ -5,7 +5,7 @@ namespace Services.RpItemServices
 {
     public interface IConstitutionService
     {
-        IQueryable<Constitution> GetAllArticlesAsync();
+        IQueryable<Constitution> GetAllArticles();
         void AddArticle(Constitution article);
         void UpdateArticle(Constitution article);
         void DeleteArticle(int id);

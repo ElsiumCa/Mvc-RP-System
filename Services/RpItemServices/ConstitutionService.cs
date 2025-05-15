@@ -15,7 +15,7 @@ namespace Services
         }
 
         // Anayasadaki tüm maddeleri getirir
-        public IQueryable<Constitution> GetAllArticlesAsync()
+        public IQueryable<Constitution> GetAllArticles()
         {
             return _context.Constitutions.AsNoTracking();
         }
