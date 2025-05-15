@@ -12,6 +12,5 @@ namespace Entities.RpItems.Dtos
 
         public string CreatedByUserId { get; set; } = string.Empty;
 
-        public DateTime EndsAt { get; set; } = DateTime.UtcNow.AddDays(2);
     }
 }

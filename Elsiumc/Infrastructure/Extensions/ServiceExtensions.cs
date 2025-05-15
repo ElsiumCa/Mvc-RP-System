@@ -3,6 +3,9 @@ using Repositories;
 using Microsoft.AspNetCore.Identity;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Services.Contrats;
+using Services.RpItemServices;
+using Entities.RpItems;
+using Services;
 
 namespace ElsiumC.Infrastructure.Extensions
 {
@@ -25,6 +28,7 @@ namespace ElsiumC.Infrastructure.Extensions
             services.AddScoped<IAuthManager, AuthManager>();
             services.AddScoped<UserManager<IdentityCitizen>>();
             services.AddScoped<RoleManager<IdentityRole>>();
+            services.AddScoped<IConstitutionService,ConstitutionService>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)
@@ -103,7 +107,6 @@ namespace ElsiumC.Infrastructure.Extensions
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<RepositoryContext>();
-                context.Database.EnsureCreated(); // Eğer veritabanı yoksa oluşturur.
                 context.Database.Migrate();      // Migrasyonları uygular.
             }
         }

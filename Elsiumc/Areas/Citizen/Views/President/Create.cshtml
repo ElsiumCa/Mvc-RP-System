@@ -1,0 +1,77 @@
+@model Entities.RpItems.Dtos.ConstitutionDtoForCreating
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Yeni Anayasa Oluştur</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label fw-semibold">Başlık</label>
+                            <input asp-for="Title" class="form-control minecraft-input" placeholder="Anayasa başlığını girin">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="mb-3">
+                            <label asp-for="Content" class="form-label fw-semibold">İçerik</label>
+                            <textarea asp-for="Content" class="form-control minecraft-input" rows="5" placeholder="Anayasa içeriğini girin"></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+
+                        <!-- Hidden Field for CreatedByUserId -->
+                        <input asp-for="CreatedByUserId" type="hidden" value="@User.Identity.Name" />
+
+                        <!-- Submit Button -->
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success minecraft-button">Oluştur</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Minecraft-style input fields */
+    .minecraft-input {
+        font-family: 'Press Start 2P', monospace; /* Pixelated font */
+        border: 2px solid #000; /* Black border */
+        background-color: #f4f4f4; /* Light gray background */
+        color: #000; /* Black text */
+        padding: 10px;
+        border-radius: 0; /* No rounded corners */
+        box-shadow: 4px 4px 0px #888; /* Blocky shadow */
+    }
+
+    .minecraft-input:focus {
+        outline: none;
+        box-shadow: 4px 4px 0px #444; /* Darker shadow on focus */
+    }
+
+    /* Minecraft-style button */
+    .minecraft-button {
+        font-family: 'Press Start 2P', monospace; /* Pixelated font */
+        border: 2px solid #000; /* Black border */
+        background-color: #4CAF50; /* Green background */
+        color: #fff; /* White text */
+        padding: 10px 20px;
+        border-radius: 0; /* No rounded corners */
+        box-shadow: 4px 4px 0px #888; /* Blocky shadow */
+        cursor: pointer;
+    }
+
+    .minecraft-button:hover {
+        background-color: #45a049; /* Slightly darker green on hover */
+    }
+
+    .minecraft-button:active {
+        box-shadow: 2px 2px 0px #444; /* Reduced shadow on click */
+        transform: translate(2px, 2px); /* Simulate button press */
+    }
+</style>

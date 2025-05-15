@@ -1,5 +1,7 @@
 using Services.RpItemServices;
 using Repositories;
+using Entities.RpItems;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services
 {
@@ -13,9 +15,9 @@ namespace Services
         }
 
         // Anayasadaki tüm maddeleri getirir
-        public IEnumerable<Constitution> GetAllArticles()
+        public IQueryable<Constitution> GetAllArticlesAsync()
         {
-            return _context.Constitutions.ToList();
+            return _context.Constitutions.AsNoTracking();
         }
 
         // Bir maddeyi id'ye göre getirir
@@ -55,5 +57,6 @@ namespace Services
             var article = _context.Constitutions.FirstOrDefault(c => c.Id == id);
             return true;
         }
+
     }
 }

@@ -13,6 +13,7 @@ namespace ElsiumC.Infrastructure.Mapper
             CreateMap<UserDtoForUpdate, IdentityCitizen>();
             CreateMap<IdentityCitizen,UserDtoForProfileList>();
             CreateMap<IdentityCitizen,UserDtoForList>();
+
         }
     }
 }

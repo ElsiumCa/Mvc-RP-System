@@ -1,0 +1,92 @@
+@model PaginatedList<Entities.RpItems.Constitution>
+
+@{
+    ViewData["Title"] = "Anayasa Yönetimi";
+}
+
+<div class="container">
+    <h2>📜 Anayasa Yönetimi</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a asp-action="Create" class="button">➕ Yeni Anayasa Ekle</a>
+    </div>
+
+    @if (Model != null && Model.Items.Any())
+    {
+        <table style="width:100%; background-color:#333; color:white; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color:#4CAF50;">
+                    <th style="padding:10px;">Başlık</th>
+                    <th style="padding:10px;">Oluşturan</th>
+                    <th style="padding:10px;">Başlangıç</th>
+                    <th style="padding:10px;">Bitiş</th>
+                    <th style="padding:10px;">Durum</th>
+                    <th style="padding:10px;">Evet / Hayır</th>
+                    <th style="padding:10px;">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var constitution in Model.Items)
+                {
+                    <tr style="border-top: 1px solid #555;">
+                        <td style="padding:10px;">@constitution.Title</td>
+                        <td style="padding:10px;">@constitution.CreatedByUserId</td>
+                        <td style="padding:10px;">@constitution.CreatedAt.ToString("g")</td>
+                        <td style="padding:10px;">@constitution.EndsAt.ToString("g")</td>
+                        <td style="padding:10px;">
+                            @(constitution.IsVotingActive ? "🟢 Oylama Açık" : 
+                              (constitution.IsPassed.HasValue 
+                                  ? (constitution.IsPassed.Value ? "✅ Kabul Edildi" : "❌ Reddedildi")
+                                  : "⏳ Bekleniyor"))
+                        </td>
+                        <td style="padding:10px;">@constitution.YesVotes / @constitution.NoVotes</td>
+                        <td style="padding:10px;">
+                            <a asp-action="Edit" asp-route-id="@constitution.Id" class="button">✏️ Düzenle</a>
+                            <a asp-action="Delete" asp-route-id="@constitution.Id" class="button" style="background-color:#e74c3c; border-color:#c0392b;">🗑️ Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Sayfalama -->
+        <div style="margin-top: 20px;">
+            <ul class="pagination">
+                <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                    <a class="page-link" href="@Url.Action("ManageConstitutionAsync", new { page = Model.PageIndex - 1, pageSize = Model.PageSize})">Önceki</a>
+                </li>
+                <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                    <a class="page-link" href="@Url.Action("ManageConstitutionAsync", new { page = Model.PageIndex + 1, pageSize = Model.PageSize })">Sonraki</a>
+                </li>
+            </ul>
+        </div>
+    }
+    else
+    {
+        <p>Henüz bir anayasa maddesi eklenmemiş.</p>
+    }
+</div>
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+    }
+    .pagination .page-item {
+        margin: 0 5px;
+    }
+    .pagination .page-item.disabled .page-link {
+        pointer-events: none;
+        background-color: #ddd;
+    }
+    .pagination .page-link {
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .pagination .page-link:hover {
+        background-color: #45a049;
+    }
+</style>

@@ -1,11 +1,11 @@
 using Entities;
+using Entities.RpItems;
 
 namespace Services.RpItemServices
 {
     public interface IConstitutionService
     {
-        IEnumerable<Constitution> GetAllArticles();
-        Constitution GetArticleById(int id);
+        IQueryable<Constitution> GetAllArticlesAsync();
         void AddArticle(Constitution article);
         void UpdateArticle(Constitution article);
         void DeleteArticle(int id);
